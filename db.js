@@ -116,5 +116,5 @@ app.get("/api/searchcourse", (request, response) => {
 
 // Start the server on port 
 app.listen(PORT, () => {
-    console.log("Nodejs Server Started...");
+    console.log("Nodejs Server Started at "+ PORT);
 });
