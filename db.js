@@ -59,6 +59,26 @@ app.post("/api/login", (request, response) => {
         }
     });
 });
+
+app.post("/api/registerUser", (request, response) => {   
+    const { username, password } = request.body;
+    new sql.Request().query("insert into users(username, password) values( '" + username + "', '" + password + "')", (err, result) => {
+        if (err) {            
+            response.status(401).json({
+                status: "failed",                
+                message: "Unable to register, please try again.",
+            });
+        } else {
+            response.status(200).json({
+                status: "success",
+                data: [result.recordset],
+                message: "User registered successfully!",
+            });           
+           
+        }
+    });
+});
+
 app.post("/api/enrollCourse", (request, response) => {   
     const { userid, courseid, action } = request.body;
 
